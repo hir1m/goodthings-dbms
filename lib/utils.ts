@@ -1,12 +1,12 @@
-import Cookies from "universal-cookie";
-
 /**
  * Fetch with jwt header
  */
-export const jwtFetch = async (url: string, options?: RequestInit) => {
-  const cookies = new Cookies();
-  const token = cookies.get("jwt_token");
-
+export const jwtFetch = async (
+  url: string,
+  token: string,
+  addHeaders?: HeadersInit,
+  options?: RequestInit
+) => {
   try {
     if (!token || token.length < 1) {
       return await fetch(url, options);
@@ -14,6 +14,7 @@ export const jwtFetch = async (url: string, options?: RequestInit) => {
       return await fetch(url, {
         headers: {
           authorization: `Bearer ${token}`,
+          ...addHeaders,
         },
         ...options,
       });

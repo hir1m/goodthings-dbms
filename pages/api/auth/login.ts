@@ -50,7 +50,7 @@ export default async (
       res.status(400).json({ message: "incorrect password" });
     }
   } catch (err) {
-    // console.error(err);
+    console.error(err);
     res.status(500).json({ message: "database error" });
   }
 };

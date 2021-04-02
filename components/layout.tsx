@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Navigation from "./navigation";
 
 const Layout: React.FC = ({ children: children }) => {
   return (
@@ -8,7 +7,6 @@ const Layout: React.FC = ({ children: children }) => {
         <title>Good Things Employee Portal</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navigation />
       {children}
     </div>
   );

@@ -5,10 +5,17 @@ import React, {
   SetStateAction,
   useState,
   MouseEvent,
+  useEffect,
 } from "react";
 import { Row, Container, Button, Form, Alert } from "react-bootstrap";
+import Navigation from "../../components/navigation";
 import styles from "../../styles/Form.module.scss";
+import { jwtFetch } from "../../lib/utils";
+import { relative_path } from "../../lib/config";
+import cookies from "next-cookies";
 import Cookies from "universal-cookie";
+import { NextPage } from "next";
+import { UserData } from "../../types/user";
 import Router from "next/router";
 
 interface FormData {
@@ -16,7 +23,11 @@ interface FormData {
   password: string;
 }
 
-const Login: React.FC = () => {
+interface Props {
+  userdata: UserData;
+}
+
+const Login: NextPage<Props> = ({ userdata }) => {
   const [formData, setFormData]: [
     FormData,
     Dispatch<SetStateAction<FormData>>
@@ -59,28 +70,36 @@ const Login: React.FC = () => {
 
       const res_json = await res.json();
 
-      if (res.status !== 200) {
+      if (!res.ok) {
         return setErrorMsg(`Error: ${res_json.message}`);
       }
 
       // set jwt coockie
-      const cookies = new Cookies();
+      const unicookies = new Cookies();
       const now = new Date();
 
-      cookies.set("jwt_token", res_json.data.jwt_token, {
+      unicookies.set("jwt_token", res_json.data.jwt_token, {
         path: "/",
         expires: new Date(now.getTime() + 30 * 60000),
         sameSite: "lax",
       });
       Router.push("/");
     } catch (err) {
-      // console.error(err);
+      console.error(err);
       setErrorMsg(`Error: ${err.message}`);
     }
   };
 
+  // return to main page if already logged in
+  useEffect(() => {
+    if (userdata) {
+      Router.push("/");
+    }
+  }, []);
+
   return (
     <div>
+      <Navigation userdata={userdata} />
       <Container>
         <Row
           className={`${styles.form_title} justify-content-center justify-content-md-start`}
@@ -143,6 +162,31 @@ const Login: React.FC = () => {
       </Container>
     </div>
   );
+};
+
+Login.getInitialProps = async (ctx) => {
+  const { jwt_token } = cookies(ctx);
+  // console.log(ctx);
+
+  var userdata: UserData;
+  try {
+    const res = await jwtFetch(`${relative_path}/api/get/userdata`, jwt_token);
+    const res_json = await res.json();
+    // console.log(res_json);
+
+    if (!res.ok) {
+      userdata = null;
+    } else {
+      userdata = res_json.data.userdata;
+    }
+  } catch (err) {
+    console.error(err);
+    userdata = null;
+  }
+
+  return {
+    userdata: userdata,
+  };
 };
 
 export default Login;

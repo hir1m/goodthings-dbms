@@ -1,31 +1,14 @@
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { UserData } from "../types/user";
-import { jwtFetch } from "../lib/utils";
-import { useEffect, useState, MouseEvent } from "react";
+import { MouseEvent } from "react";
 import Cookies from "universal-cookie";
 import Router from "next/router";
 
-const Navigation: React.FC = () => {
-  const [userdata, setUserdata] = useState(undefined);
+interface Props {
+  userdata: UserData;
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await jwtFetch("/api/get/userdata");
-        const res_json = await res.json();
-        var userdata: UserData;
-
-        // console.log(res_full);
-        userdata = res_json.data.userdata;
-        setUserdata(userdata);
-      } catch (err) {
-        setUserdata(undefined);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const Navigation: React.FC<Props> = ({ userdata }) => {
   const handleClick = async (_: MouseEvent<HTMLButtonElement>) => {
     const cookies = new Cookies();
     cookies.remove("jwt_token", { path: "/" });
