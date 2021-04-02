@@ -11,9 +11,12 @@ interface Props {
 const Navigation: React.FC<Props> = ({ userdata }) => {
   const handleClick = async (_: MouseEvent<HTMLButtonElement>) => {
     const cookies = new Cookies();
-    cookies.remove("jwt_token", { path: "/" });
-    Router.reload();
-    Router.push("/");
+    cookies.remove("jwt_token", { path: "/", sameSite: "lax" });
+    if (Router.pathname === "/") {
+      Router.reload();
+    } else {
+      Router.push("/");
+    }
   };
 
   return (
