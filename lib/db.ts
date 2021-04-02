@@ -4,7 +4,7 @@ const connectionUri = process.env.DATABASE_URL;
 // connect with db
 const pool = new Pool({
   connectionString: connectionUri,
-  ssl: process.env.NODE_ENV === "production" ? true : false,
+  ssl: { rejectUnauthorized: false },
 });
 
 export default pool;
