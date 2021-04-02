@@ -12,8 +12,8 @@ const Navigation: React.FC<Props> = ({ userdata }) => {
   const handleClick = async (_: MouseEvent<HTMLButtonElement>) => {
     const cookies = new Cookies();
     cookies.remove("jwt_token", { path: "/" });
-    Router.push("/");
     Router.reload();
+    Router.push("/");
   };
 
   return (
