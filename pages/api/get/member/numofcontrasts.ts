@@ -3,13 +3,10 @@ import pool from "../../../../lib/db";
 import { getUserData } from "../userdata";
 
 /**
- * responds with a limit amount of sample data
+ * Aggregation group-by query sample 1
  */
 export default async (
-  {
-    headers: { authorization: jwt_token },
-    body: { limit: limit },
-  }: NextApiRequest,
+  { headers: { authorization: jwt_token } }: NextApiRequest,
   res: NextApiResponse
 ) => {
   try {
@@ -27,7 +24,10 @@ export default async (
     }
 
     const { rowCount: rowCount, rows: rows } = await pool.query(
-      `SELECT * FROM public.sample${limit ? ` LIMIT ${limit}` : ""};`
+      `SELECT m_pid, COUNT(cid)
+      FROM "CONTRACT"
+      GROUP BY m_pid;
+      `
     );
 
     res.status(200).json({
@@ -38,9 +38,14 @@ export default async (
       },
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      message: "server error",
-    });
+    if (err.message) {
+      res.status(500).json({
+        message: err.message,
+      });
+    } else {
+      res.status(500).json({
+        message: "server error",
+      });
+    }
   }
 };

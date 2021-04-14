@@ -8,7 +8,11 @@ interface Props {
 
 const DataTable: React.FC<Props> = ({ data }) => {
   if (!data || data.length < 1) {
-    return <></>;
+    return (
+      <Container>
+        <p className="text-center">No data to display</p>
+      </Container>
+    );
   }
 
   const [page, setPage] = useState(1);

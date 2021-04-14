@@ -59,48 +59,36 @@ const Home: NextPage<Props> = ({ userdata }) => {
           <Row className="justify-content-start">
             <Col xs={12} md={6} lg={4} className={styles.card}>
               <Card border="primary">
-                <Card.Header>Test View</Card.Header>
-                <Card.Body>
-                  <ul className={styles.card_list}>
-                    <li>
-                      <Button variant="link" href="/view/test/small">
-                        Small
-                      </Button>
-                    </li>
-                    <li>
-                      <Button variant="link" href="/view/test/medium">
-                        Medium
-                      </Button>
-                    </li>
-                    <li>
-                      <Button variant="link" href="/view/test/large">
-                        Large
-                      </Button>
-                    </li>
-                  </ul>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col xs={12} md={6} lg={4} className={styles.card}>
-              <Card border="primary">
                 <Card.Header>Manage Contract</Card.Header>
                 <Card.Body>
                   <ul className={styles.card_list}>
                     <li>
-                      <Button variant="link">Sign Contract</Button>
+                      <Button variant="link" href="/view/contract/detailed">
+                        View All Contracts With Details
+                      </Button>
                     </li>
                     <li>
-                      <Button variant="link">Find Contract</Button>
+                      <Button variant="link" href="/view/contract/completed">
+                        View All Completed Contracts
+                      </Button>
                     </li>
                     <li>
-                      <Button variant="link">Edit Contract</Button>
+                      <Button
+                        variant="link"
+                        href="/input/search/contract/valueof"
+                      >
+                        Search Value of a Contract
+                      </Button>
                     </li>
                     <li>
-                      <Button variant="link">Manage Contract Payment</Button>
+                      <Button variant="link" href="/view/contract/valueofall">
+                        View Value of All Contracts
+                      </Button>
                     </li>
                     <li>
-                      <Button variant="link">Delete Contract</Button>
+                      <Button variant="link" href="/input/delete/contract">
+                        Delete a Contract
+                      </Button>
                     </li>
                   </ul>
                 </Card.Body>
@@ -113,16 +101,17 @@ const Home: NextPage<Props> = ({ userdata }) => {
                 <Card.Body>
                   <ul className={styles.card_list}>
                     <li>
-                      <Button variant="link">Add Item</Button>
+                      <Button
+                        variant="link"
+                        href="/input/update/avaliable_item"
+                      >
+                        Update an Item
+                      </Button>
                     </li>
                     <li>
-                      <Button variant="link">Find Item</Button>
-                    </li>
-                    <li>
-                      <Button variant="link">Edit Item</Button>
-                    </li>
-                    <li>
-                      <Button variant="link">Delete Item</Button>
+                      <Button variant="link" href="/input/delete/soldout_item">
+                        Delete an Item
+                      </Button>
                     </li>
                   </ul>
                 </Card.Body>
@@ -135,19 +124,9 @@ const Home: NextPage<Props> = ({ userdata }) => {
                 <Card.Body>
                   <ul className={styles.card_list}>
                     <li>
-                      <Button variant="link">Add Member</Button>
-                    </li>
-                    <li>
-                      <Button variant="link">Find Member</Button>
-                    </li>
-                    <li>
-                      <Button variant="link">Find Contracts of Member</Button>
-                    </li>
-                    <li>
-                      <Button variant="link">Edit Member</Button>
-                    </li>
-                    <li>
-                      <Button variant="link">Delete Member</Button>
+                      <Button variant="link" href="/input/update/member">
+                        Update Member Contact
+                      </Button>
                     </li>
                   </ul>
                 </Card.Body>
@@ -161,16 +140,12 @@ const Home: NextPage<Props> = ({ userdata }) => {
                   <Card.Body>
                     <ul className={styles.card_list}>
                       <li>
-                        <Button variant="link">Add Employee</Button>
-                      </li>
-                      <li>
-                        <Button variant="link">Find Employee</Button>
-                      </li>
-                      <li>
-                        <Button variant="link">Edit Employee</Button>
-                      </li>
-                      <li>
-                        <Button variant="link">Delete Employee</Button>
+                        <Button
+                          variant="link"
+                          href="/input/search/employee/belongtostore"
+                        >
+                          Get Number of Employee of Branch
+                        </Button>
                       </li>
                     </ul>
                   </Card.Body>
@@ -184,20 +159,13 @@ const Home: NextPage<Props> = ({ userdata }) => {
               <React.Fragment>
                 <Col xs={12} md={6} lg={4} className={styles.card}>
                   <Card border="primary">
-                    <Card.Header>Manage Platform</Card.Header>
+                    <Card.Header>Manage Branch</Card.Header>
                     <Card.Body>
                       <ul className={styles.card_list}>
                         <li>
-                          <Button variant="link">Add Platform</Button>
-                        </li>
-                        <li>
-                          <Button variant="link">Find Platform</Button>
-                        </li>
-                        <li>
-                          <Button variant="link">Edit Platform</Button>
-                        </li>
-                        <li>
-                          <Button variant="link">Delete Platform</Button>
+                          <Button variant="link" href="view/inventory/branched">
+                            Show Inventory of Each Branch
+                          </Button>
                         </li>
                       </ul>
                     </Card.Body>
@@ -206,25 +174,23 @@ const Home: NextPage<Props> = ({ userdata }) => {
 
                 <Col xs={12} md={6} lg={4} className={styles.card}>
                   <Card border="primary">
-                    <Card.Header>Manage Branch</Card.Header>
+                    <Card.Header>Test View</Card.Header>
                     <Card.Body>
                       <ul className={styles.card_list}>
                         <li>
-                          <Button variant="link">Add Branch</Button>
-                        </li>
-                        <li>
-                          <Button variant="link">Find Branch</Button>
-                        </li>
-                        <li>
-                          <Button variant="link">
-                            Find Employee of Branch
+                          <Button variant="link" href="/view/test/small">
+                            Small
                           </Button>
                         </li>
                         <li>
-                          <Button variant="link">Edit Branch</Button>
+                          <Button variant="link" href="/view/test/medium">
+                            Medium
+                          </Button>
                         </li>
                         <li>
-                          <Button variant="link">Delete Branch</Button>
+                          <Button variant="link" href="/view/test/large">
+                            Large
+                          </Button>
                         </li>
                       </ul>
                     </Card.Body>

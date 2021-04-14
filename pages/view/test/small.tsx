@@ -49,7 +49,7 @@ Test.getInitialProps = async (ctx) => {
   if (userdata) {
     try {
       const res = await jwtFetch(
-        `${relative_path}/api/get/from/sample`,
+        `${relative_path}/api/get/sample`,
         jwt_token,
         {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ Test.getInitialProps = async (ctx) => {
       // console.log(res_json);
 
       if (!res.ok) {
-        userdata = res_json.data.userdata;
+        sampledata = null;
       } else {
         sampledata = res_json.data.rows;
       }

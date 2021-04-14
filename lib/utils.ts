@@ -23,3 +23,19 @@ export const jwtFetch = async (
     throw err;
   }
 };
+
+/**
+ * Check if string is integer
+ */
+export const isInteger = (s: string): boolean => {
+  return /^\d+$/.test(s);
+};
+
+/**
+ * Check if string is float
+ */
+export const isFloat = (s: string): boolean => {
+  let s_ = parseFloat(s);
+  if (isNaN(s_)) return false;
+  return true;
+};
