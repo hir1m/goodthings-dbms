@@ -63,6 +63,11 @@ const Home: NextPage<Props> = ({ userdata }) => {
                 <Card.Body>
                   <ul className={styles.card_list}>
                     <li>
+                      <Button variant="link" href="/view/contract/all">
+                        View All Contracts
+                      </Button>
+                    </li>
+                    <li>
                       <Button variant="link" href="/view/contract/detailed">
                         View All Contracts With Details
                       </Button>
@@ -70,6 +75,11 @@ const Home: NextPage<Props> = ({ userdata }) => {
                     <li>
                       <Button variant="link" href="/view/contract/completed">
                         View All Completed Contracts
+                      </Button>
+                    </li>
+                    <li>
+                      <Button variant="link" href="/input/insert/contract">
+                        Add a Contract
                       </Button>
                     </li>
                     <li>
@@ -101,11 +111,34 @@ const Home: NextPage<Props> = ({ userdata }) => {
                 <Card.Body>
                   <ul className={styles.card_list}>
                     <li>
+                      <Button variant="link" href="/view/item/all_avaliable">
+                        View All Avaliable Items
+                      </Button>
+                    </li>
+                    <li>
+                      <Button variant="link" href="/view/item/all_soldout">
+                        View All Soldout Items
+                      </Button>
+                    </li>
+                    <li>
+                      <Button
+                        variant="link"
+                        href="/input/insert/avaliable_item"
+                      >
+                        Add an Item
+                      </Button>
+                    </li>
+                    <li>
                       <Button
                         variant="link"
                         href="/input/update/avaliable_item"
                       >
                         Update an Item
+                      </Button>
+                    </li>
+                    <li>
+                      <Button variant="link" href="/input/update/itemtosoldout">
+                        Move an Item to Soldout Items
                       </Button>
                     </li>
                     <li>
